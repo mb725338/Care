@@ -1,0 +1,205 @@
+/* =========================================
+   THEME VARIABLES
+   ========================================= */
+:root {
+  --bg: #f7fafc;
+  --surface: #ffffff;
+  --ink: #0f172a;
+  --muted: #64748b;
+  --brand: #10b981;        /* Main green */
+  --brand-dark: #0ea371;   /* Darker shade */
+  --brand-light: #34d399;  /* Lighter shade */
+  --brand-2: #0ea5e9;      /* Blue accent */
+  --accent: #06b6d4;
+  --ok: #22c55e;
+  --warn: #f59e0b;
+  --error: #ef4444;
+  --ring: rgba(16, 185, 129, 0.35);
+  --shadow: 0 10px 35px rgba(2, 8, 23, 0.08);
+
+  --font-primary: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  --font-heading: 'Plus Jakarta Sans', Inter, sans-serif;
+
+  --radius-sm: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --btn-text: #ffffff;
+}
+
+/* Dark Mode */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --surface: #1e293b;
+    --ink: #f8fafc;
+    --muted: #94a3b8;
+    --shadow: 0 10px 35px rgba(255, 255, 255, 0.05);
+  }
+}
+
+/* =========================================
+   RESET & BASE
+   ========================================= */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  min-height: 100vh;
+  font-family: var(--font-primary);
+  line-height: 1.6;
+  color: var(--ink);
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(16, 185, 129, 0.08), transparent 50%),
+    radial-gradient(1000px 500px at 110% 10%, rgba(14, 165, 233, 0.08), transparent 50%),
+    var(--bg);
+}
+
+/* Typography */
+h1,h2,h3,h4,h5,h6 { font-family: var(--font-heading); font-weight:700; color: var(--ink); }
+.hero h1 { font-weight: 900; font-size: clamp(2rem,5vw+1rem,3.5rem); letter-spacing:-0.02em; }
+.sub { color: var(--muted); max-width: 56ch; }
+.eyebrow { text-transform: uppercase; letter-spacing:0.14em; font-weight:700; color:var(--brand); font-size:0.875rem; }
+
+/* =========================================
+   NAVBAR
+   ========================================= */
+.navbar {
+  position: sticky; top:0; z-index:1000;
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(14px);
+  border-bottom:1px solid rgba(15,23,42,0.06);
+  transition: all 0.3s ease;
+}
+.navbar.scrolled { box-shadow: var(--shadow); }
+.navbar-brand { font-family: var(--font-heading); font-weight:800; letter-spacing:0.5px; }
+.nav-link { font-weight:500; position:relative; transition:color 0.2s ease; }
+.nav-link:hover { color: var(--brand); }
+.nav-link::after {
+  content:""; position:absolute; left:0; bottom:-4px; width:0; height:2px;
+  background: var(--brand); transition: width 0.3s ease;
+}
+.nav-link:hover::after { width:100%; }
+
+/* =========================================
+   BUTTONS (FULL THEME OVERRIDE)
+   ========================================= */
+.btn {
+  display: inline-flex; align-items:center; justify-content:center;
+  gap:0.5rem; font-weight:600; text-decoration:none;
+  border-radius:25px; transition:all 0.3s ease;
+  border:1px solid transparent; cursor:pointer; white-space:nowrap;
+}
+
+.btn:disabled { opacity:0.65; cursor:not-allowed; pointer-events:none; }
+
+/* Primary button */
+.btn-primary,
+.btn-primary:focus,
+.btn-primary:active {
+  background-color: var(--brand) !important;
+  border-color: var(--brand) !important;
+  color: var(--btn-text) !important;
+  box-shadow: none !important;
+}
+.btn-primary:hover {
+  background-color: var(--brand-dark) !important;
+  border-color: var(--brand-dark) !important;
+  color: var(--btn-text) !important;
+  box-shadow: 0 4px 12px rgba(16,185,129,0.35) !important;
+}
+
+/* Outline primary */
+.btn-outline-primary {
+  color: var(--brand) !important;
+  border-color: var(--brand) !important;
+  background-color: transparent !important;
+}
+.btn-outline-primary:hover,
+.btn-outline-primary:focus {
+  background-color: var(--brand) !important;
+  color: var(--btn-text) !important;
+  border-color: var(--brand) !important;
+  box-shadow: 0 4px 12px rgba(16,185,129,0.25) !important;
+}
+
+/* Secondary button (blue accent) */
+.btn-secondary {
+  background-color: var(--brand-2) !important;
+  border-color: var(--brand-2) !important;
+  color:#fff !important;
+}
+.btn-secondary:hover { background-color:#0284c7 !important; border-color:#0284c7 !important; }
+
+/* Ghost / brand */
+.btn-ghost { border-color: var(--brand); color: var(--brand); background:transparent; }
+.btn-ghost:hover { background: rgba(16,185,129,0.1); transform:translateY(-1px); }
+.btn-brand { background: var(--brand); border-color: var(--brand); color: white; }
+.btn-brand:hover { background: var(--brand-dark); border-color: var(--brand-dark); transform:translateY(-1px); box-shadow:0 4px 12px rgba(16,185,129,0.25); }
+
+/* =========================================
+   FORM CONTROLS
+   ========================================= */
+.form-control {
+  border-radius: var(--radius-md);
+  border: 1px solid rgba(2,8,23,0.1);
+  padding:0.75rem 1rem; font-family: var(--font-primary);
+  transition: all 0.3s ease;
+}
+.form-control:focus {
+  border-color: var(--brand);
+  box-shadow: 0 0 0 0.25rem var(--ring);
+  outline: none;
+}
+
+/* =========================================
+   MODAL OVERRIDE (buttons inside modal)
+   ========================================= */
+.modal-content.glass { border-radius: var(--radius-xl); overflow:hidden; }
+.modal .btn-primary { background-color: var(--brand) !important; border-color: var(--brand) !important; color: #fff !important; }
+.modal .btn-primary:hover { background-color: var(--brand-dark) !important; border-color: var(--brand-dark) !important; }
+
+/* =========================================
+   OTHER STYLES (cards, hero, footer, etc.)
+   ========================================= */
+.feature-card { border-radius: var(--radius-xl); border:1px solid rgba(2,8,23,0.06); background:linear-gradient(180deg,#fff,#fbfeff); box-shadow: var(--shadow); transition:all 0.35s ease; }
+.feature-card:hover { transform:translateY(-6px); box-shadow:0 18px 45px rgba(2,8,23,0.12); }
+
+.hero { position:relative; overflow:hidden; isolation:isolate; }
+.blob { position:absolute; inset:-20% -10% auto auto; width:60vmax; height:60vmax; border-radius:50%; background:radial-gradient(circle at 30%30%, rgba(16,185,129,0.2), rgba(14,165,233,0.08) 60%, transparent 70%); filter:blur(40px); z-index:-1; pointer-events:none; }
+.hero-badge { display:inline-flex; align-items:center; gap:0.5rem; padding:0.45rem 0.75rem; border-radius:999px; background:#ecfeff; color:#0c4a6e; font-weight:600; border:1px solid #cffafe; font-size:0.875rem; }
+.avatar { width:48px; height:48px; border-radius:50%; object-fit:cover; border:2px solid white; box-shadow:var(--shadow); }
+
+footer a { color: var(--ink); text-decoration:none; transition: color 0.2s ease; }
+footer a:hover { color: var(--brand); text-decoration:underline; }
+
+/* Responsive */
+@media (max-width:768px){.blob{width:80vmax;height:80vmax;inset:-10% -30% auto auto;}.btn-group{flex-direction:column;gap:1rem;}.btn-group .btn{width:100%;}.navbar-nav{padding:1rem 0;}.feature-card,.stat{margin-bottom:1rem;}}
+@media (max-width:576px){.hero h1{font-size:clamp(1.5rem,6vw,2rem);}.hero-badge{font-size:0.75rem;}}
+
+/* Animation */
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+.fade-in{animation:fadeIn 0.6s ease-out;}
+/* ALERT BOC  */
+   .custom-alert {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(135deg, #10b981, #0ea5e9);
+    color: white;
+    padding: 25px;
+    border-radius: 16px;
+    width: 420px;
+    max-width: 90%;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+    z-index: 9999;
+    animation: fadeIn 0.4s ease-in-out;
+  }
+  .custom-alert .alert-content {
+    text-align: center;
+  }
+  @keyframes fadeIn {
+    from {opacity:0; transform:translate(-50%, -60%);}
+    to {opacity:1; transform:translate(-50%, -50%);}
+  }

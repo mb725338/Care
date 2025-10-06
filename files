@@ -1,0 +1,39 @@
+care/
+│── index.php              # Landing page
+│── login.php              # Common login
+│── signup.php             # Signup (only for patients)
+│── logout.php             # Common logout
+│── db.php                 # Database connection
+│── config.php             # (Optional) constants, settings
+│
+├── admin/
+│   │── dashboard.php       # Admin dashboard
+│   │── add_doctor.php      # Add doctor form
+│   │── manage_users.php    # Manage all users
+│   │── view_reports.php    # Reports
+│   │── settings.php        # Admin settings
+│
+├── doctor/
+│   │── dashboard.php       # Doctor dashboard
+│   │── appointments.php    # Manage appointments
+│   │── patients.php        # Patient list
+│   │── records.php         # Medical records
+│   │── messages.php        # Doctor ↔ Patient chat (role-based logic)
+│   │── profile.php         # Doctor profile
+│
+├── patient/
+│   │── dashboard.php       # Patient dashboard
+│   │── book_appointment.php# Book new appointment
+│   │── records.php         # View own records
+│   │── messages.php        # Patient ↔ Doctor chat (same code as doctor/messages.php)
+│   │── profile.php         # Patient profile
+│
+├── assets/
+│   ├── css/                # Stylesheets
+│   ├── js/                 # JavaScript files
+│   └── img/                # Images, icons
+│
+└── includes/
+    │── header.php          # Common header/navbar
+    │── footer.php          # Common footer
+    │── auth.php            # Authentication check
